@@ -9,11 +9,15 @@ import {
 } from '@expo-google-fonts/poppins';
 
 export default function App() {
-    const [loaded] = useFonts({
+    const [loaded, error] = useFonts({
         Poppins_400Regular,
         Poppins_500Medium,
         Poppins_600SemiBold,
     });
+
+    if (!loaded || error) {
+        return <></>;
+    }
 
     return (
         <ImageBackground
@@ -89,6 +93,7 @@ const styles = StyleSheet.create({
     imagesContainer: {
         flexDirection: 'column',
         width: '100%',
+        maxWidth: 500,
     },
     topContainer: {
         padding: 10,
@@ -132,5 +137,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         backgroundColor: 'transparent',
         color: '#fff',
+    },
+    boldTitlePart: {
+        fontSize: 36,
+        fontFamily: 'Poppins_600SemiBold',
     },
 });
